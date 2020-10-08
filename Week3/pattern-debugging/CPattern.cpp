@@ -67,10 +67,11 @@ int CPattern::FindMax()
 int CPattern::FindLocation(int value)
 {
 	int found = -1;
-	for (int i = 0; i < TOP; ++i)
+	for (int i = 0; i < TOP; i++)
 	{
-		if (found == mSequence[i])
+		if (value == mSequence[i])
 		{
+			found = i;
 			return found;
 		}
 	}
@@ -95,5 +96,5 @@ int main()
 	cout << "location of the number 7: " << myPattern->FindLocation(7);
 	cout << endl;
 
-	system("pause");
+	std::cin.get();
 }
