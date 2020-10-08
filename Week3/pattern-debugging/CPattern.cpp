@@ -52,11 +52,11 @@ int CPattern::FindMax()
 {
 	int max = -100;
 
-	for (int i = 0; i < TOP; ++i)
+	for (int i = 0; i < TOP; i++)
 	{
-		if (i > max)
+		if (mSequence[i] > max)
 		{
-			max = i;
+			max = mSequence[i];
 		}
 	}
 	return max;
