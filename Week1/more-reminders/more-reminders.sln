@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "more-reminders", "more-reminders\more-reminders.vcxproj", "{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Debug|x64.ActiveCfg = Debug|x64
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Debug|x64.Build.0 = Debug|x64
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Debug|x86.ActiveCfg = Debug|Win32
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Debug|x86.Build.0 = Debug|Win32
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Release|x64.ActiveCfg = Release|x64
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Release|x64.Build.0 = Release|x64
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Release|x86.ActiveCfg = Release|Win32
+		{FCEA6D1A-EBEA-459A-B1D1-7B6A2EE27250}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BF88A4E-AC2B-4BBB-903C-A0E81EEC0D27}
+	EndGlobalSection
+EndGlobal
