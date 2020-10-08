@@ -30,7 +30,7 @@ void CPattern::Initialise(int sequence[TOP])
 // Display the array
 void CPattern::Display()
 {
-	for (int i = TOP; i < TOP; ++i)
+	for (int i = 0; i < TOP; ++i)
 	{
 		cout << mSequence[i] << " ";
 	}
@@ -40,7 +40,7 @@ void CPattern::Display()
 // Display the array in reverse order
 void CPattern::DisplayReversed()
 {
-	for (int i = TOP; i > 0; --i)
+	for (int i = TOP - 1; i >= 0; i--)
 	{
 		cout << mSequence[i] << " ";
 	}
