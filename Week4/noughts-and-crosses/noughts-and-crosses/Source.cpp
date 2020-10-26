@@ -4,15 +4,15 @@
 int main()
 {
 	static std::unique_ptr<Noughts::CNoughts> Game = std::make_unique<Noughts::CNoughts>();
-
 	Game.get()->Initialise();
-	Game.get()->Grid();
+
+	bool playing = true;
 
 	// While the game is not over, keep playing
-	while (!Game.get()->Winning() || !Game.get()->Drawing())
+	while (playing)
 	{
 		// Clear screen
-		std::cout << "\x1B[2J\x1B[H";
+		std::cout << "\033[H\033[J";
 
 		Game.get()->Grid();
 
@@ -30,7 +30,13 @@ int main()
 		{
 			userInput = Game.get()->GetInput();
 		}
+
+		playing = (!Game.get()->Winning() && !Game.get()->Drawing());
 	}
+
+	// Update the grid with the last input symbol.
+	std::cout << "\033[H\033[J";
+	Game.get()->Grid();
 
 	Game.get()->Drawing() ? Game.get()->OutputDraw() : Game.get()->OutputWinningPlayer();
 

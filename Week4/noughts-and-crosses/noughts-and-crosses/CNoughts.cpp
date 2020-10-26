@@ -56,136 +56,119 @@ const char Noughts::CNoughts::GetPlayerSymbol()
 
 bool Noughts::CNoughts::HorizontalWin()
 {
-	// Tripwire
-	bool won = true;
-
 	const char cSymbol = GetPlayerSymbol();
 
-	// Check the horizontal lines.
+	int sum;
+
 	for (int row = 0; row < Constants::SIZE; row++)
 	{
-		won = true;
+		sum = 0;
 		for (int column = 0; column < Constants::SIZE; column++)
 		{
-			if (m_Grid[row][column] != cSymbol)
+			if (m_Grid[row][column] == cSymbol)
 			{
-				won = false;
-				break;
+				sum++;
+			}
+			if (sum == Constants::SIZE)
+			{
+				return true;
 			}
 		}
-		if (won)
-		{
-			return won;
-		}
 	}
-	//for (const auto& row : m_Grid)
-	//{
-	//	for (const auto column : row)
-	//	{
-	//		if (column != cSymbol)
-	//		{
-	//			won = false;
-	//			break;
-	//		}
-	//	}
-	//}
-	return won;
+
+	return (sum == Constants::SIZE);
 }
 
 bool Noughts::CNoughts::VerticalWin()
 {
-	// Tripwire
-	bool won = true;
-
 	const char cSymbol = GetPlayerSymbol();
 
-	// Check Vertical lines
-	// For every char in first row, check all chars below current position
-	for (int row = 0; row < Constants::SIZE; row++)
+	int sum;
+
+	for (int column = 0; column < Constants::SIZE; column++)
 	{
-		for (int column = 0; column < Constants::SIZE; column++)
+		sum = 0;
+		for (int row = 0; row < Constants::SIZE; row++)
 		{
-			if (m_Grid[row][column] != cSymbol)
+			if (m_Grid[row][column] == cSymbol)
 			{
-				won = false;
-				break;
+				sum++;
+			}
+			if (sum == Constants::SIZE)
+			{
+				return true;
 			}
 		}
-		if (won)
-		{
-			break;
-		}
 	}
-	return won;
+
+	return (sum == Constants::SIZE);
 }
 
 bool Noughts::CNoughts::DiagonalWin()
 {
-	// Tripwire
-	bool won = true;
-
 	const char cSymbol = GetPlayerSymbol();
+
+	int sum = 0;
 
 	// Check diagonal lines.
 	// Top left corner to bottom right corner
-	for (int i = 0; i < Constants::SIZE; i++)
+	for (int row = 0; row < Constants::SIZE; row++)
 	{
-		if (m_Grid[i][i] != cSymbol)
+		if (m_Grid[row][row] == cSymbol)
 		{
-			won = false;
-			break;
-		}
-		if (won)
-		{
-			break;
+			sum++;
 		}
 	}
-
-	if (won)
+	
+	if (sum == Constants::SIZE)
 	{
-		return won;
+		return true;
 	}
 
+	sum = 0;
 	// Bottom left corner to top right corner
-	for (int i = 0; i < Constants::SIZE; i++)
+	for (int row = Constants::SIZE; row >= 0; row--)
 	{
-		if (m_Grid[Constants::SIZE - i - 1][i] != cSymbol)
+		if (m_Grid[row][row] == cSymbol)
 		{
-			won = false;
-			break;
-		}
-		if (won)
-		{
-			break;
+			sum++;
 		}
 	}
-	return won;
+	return (sum == Constants::SIZE);
 }
 
 bool Noughts::CNoughts::Winning()
 {
 	return (HorizontalWin() || VerticalWin() || DiagonalWin());	
+	//return (HorizontalWin() || VerticalWin() || DiagonalWin());	
 }
 
 bool Noughts::CNoughts::Drawing()
 {
-	bool drawing = true;
-	for (const auto& outer : m_Grid)
+	if (!Winning())
 	{
-		for (const auto& inner : outer)
+		bool drawing = true;
+		for (const auto& outer : m_Grid)
 		{
-			if (inner == Constants::DEFAULT_CHAR)
+			for (const auto& inner : outer)
 			{
-				drawing = false;
+				if (inner == Constants::DEFAULT_CHAR)
+				{
+					drawing = false;
+					break;
+				}
+			}
+			if (!drawing)
+			{
 				break;
 			}
 		}
-		if (!drawing)
-		{
-			break;
-		}
+		return drawing;
 	}
-	return drawing;
+	else
+	{
+		return false;
+	}
 }
 
 void Noughts::CNoughts::OutputPlayerTurn()
