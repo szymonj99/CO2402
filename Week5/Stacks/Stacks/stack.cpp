@@ -11,9 +11,10 @@ private:
 	std::string data[SIZE];
 
 public:
+	Stack();
+	Stack(const Stack* STACK);
 	void push( std::string newData );
 	void pop( std::string &oldData );
-	void initialiseStack();
 	const bool isEmpty() const;
 	const bool isFull() const;
 	void displayStack() const;
@@ -24,7 +25,23 @@ public:
 	void displayN(const int N) const;
 	const bool findN(const int N, std::string& foundString) const;
 	const bool allSame() const;
+	void copyStack(Stack* newStack) const;
 };
+
+// Default constructor
+Stack::Stack()
+{
+	top = 0;
+}
+
+// Copy the contents of the parameter stack to the current stack
+Stack::Stack(const Stack* STACK)
+{
+	for (int i = 0; i < STACK->getLength(); i++)
+	{
+		this->data[i] = STACK->data[i];
+	}
+}
 
 // pushes data onto the stack, increments top.
 // input: string newData. The data to be pushed onto the top of the stack.
@@ -55,12 +72,6 @@ void Stack::pop( std::string &oldData )
 		std::cout << "stack empty" << std::endl;
 		oldData = "";
 	}
-}
-
-// Set up the stack. Set top of the stack to 0.
-void Stack::initialiseStack()
-{
-	top = 0;
 }
 
 // Checks to see whether the array is full.
@@ -183,10 +194,18 @@ const bool Stack::allSame() const
 	return true;
 }
 
+// Copy the contents of the current stack to the new stack parameter
+void Stack::copyStack(Stack* newStack) const
+{
+	for (int i = 0; i < this->getLength(); i++)
+	{
+		newStack->data[i] = this->data[i];
+	}
+}
+
 int main()
 {
 	std::unique_ptr<Stack> myStack = std::make_unique<Stack>();
-	myStack->initialiseStack();
 
 	myStack->push( "red" );
 	myStack->push( "green" );
